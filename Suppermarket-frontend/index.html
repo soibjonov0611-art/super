@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshMart - Fresh Groceries Delivered</title>
+  <meta name="description" content="FreshMart - Your trusted online grocery store. Fresh vegetables, fruits, dairy, meat and more delivered to your door.">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+  <!-- ==================== TOP ANNOUNCEMENT BAR ==================== -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <div class="top-bar-left">
+          <div class="top-bar-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>\$50+ buyurtmalarga <strong>bepul yetkazib berish</strong></span>
+          </div>
+          <div class="top-bar-item">
+            <span class="top-bar-badge">KOD: FRESH10</span>
+            <span>10% chegirma oling</span>
+          </div>
+        </div>
+        <div class="top-bar-right">
+          <div class="top-bar-item">
+            <i class="fa-solid fa-clock"></i>
+            <span>Har kuni: 08:00 – 23:00</span>
+          </div>
+          <div class="top-bar-item">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+998712000011" style="color:inherit;font-weight:700;">+998 (71) 200-00-11</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo">
+          <div class="logo-icon"><i class="fa-solid fa-leaf" style="color:white;font-size:1.1rem;"></i></div>
+          <span class="logo-text">Fresh<span>Mart</span></span>
+        </a>
+
+        <div class="navbar-search">
+          <select class="search-category">
+            <option>All</option>
+            <option>Vegetables</option>
+            <option>Fruits</option>
+            <option>Dairy</option>
+            <option>Meat</option>
+            <option>Bakery</option>
+            <option>Beverages</option>
+            <option>Snacks</option>
+            <option>Frozen</option>
+          </select>
+          <input type="text" class="search-input" placeholder="Search for groceries, products...">
+          <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="navbar-actions">
+          <div class="nav-location">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Deliver to <strong>12345</strong></span>
+          </div>
+          <a href="products.html" class="nav-action-btn" title="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </a>
+          <a href="cart.html" class="nav-action-btn cart-action-btn" title="Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="badge cart-badge" style="display:none">0</span>
+          </a>
+          <a href="login.html" class="nav-user-avatar" title="Account">
+            <i class="fa-solid fa-user"></i>
+          </a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-search">
+        <input type="text" class="mobile-search-input" placeholder="Search groceries...">
+        <button class="mobile-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <a href="index.html" class="mobile-nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="products.html" class="mobile-nav-link"><i class="fa-solid fa-store"></i> Products</a>
+      <a href="cart.html" class="mobile-nav-link">
+        <i class="fa-solid fa-cart-shopping"></i> Cart
+        <span class="cart-badge" style="display:none; margin-left:auto; background:var(--accent); color:white; border-radius:999px; font-size:.7rem; font-weight:700; padding:1px 7px;">0</span>
+      </a>
+      <a href="profile.html" class="mobile-nav-link"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="login.html" class="mobile-nav-link"><i class="fa-solid fa-right-to-bracket"></i> Login / Register</a>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <i class="fa-solid fa-truck-fast"></i>
+            Toshkent bo'ylab 2 soatda yetkazib berish
+          </div>
+          <h1 class="hero-title">
+            Yangi & Halol Mahsulotlar<br>
+            <span>Eshigingizgacha</span>
+          </h1>
+          <p class="hero-subtitle">
+            Eng saralangan sabzavotlar, sarxil mevalar, 100% Halol go'sht va sifatli tabiiy oziq-ovqatlarni uyingizga tez va qulay yetkazib beramiz.
+          </p>
+          <div class="hero-cta">
+            <a href="products.html" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-cart-shopping"></i> Xarid qilish
+            </a>
+            <a href="#featuredSection" class="btn btn-outline btn-lg">
+              <i class="fa-solid fa-grid-2"></i> Toifalar
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-value">10K+</div>
+              <div class="hero-stat-label">Products</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">50K+</div>
+              <div class="hero-stat-label">Customers</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">4.9★</div>
+              <div class="hero-stat-label">Rating</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">2hr</div>
+              <div class="hero-stat-label">Delivery</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-container">
+            <div class="hero-main-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Fresh Organic Groceries" class="hero-main-img">
+            </div>
+            <div class="hero-floating-cards">
+              <div class="hero-float-card">
+                <i class="fa-solid fa-award" style="color:#FF5A36;"></i> 100% Farm Fresh
+              </div>
+              <div class="hero-float-card">
+                <i class="fa-solid fa-bolt" style="color:#FF6F00;"></i> 30-Min Fast Delivery
+              </div>
+              <div class="hero-float-card">
+                <i class="fa-solid fa-tag" style="color:#1976D2;"></i> Special Offers -25%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CATEGORY STRIP ==================== -->
+  <section class="categories-strip">
+    <div class="container">
+      <div class="categories-scroll" id="categoriesScroll">
+        <a href="products.html?cat=Vegetables" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=200&q=80" alt="Vegetables" class="cat-thumb">
+          </div>
+          <span class="cat-name">Vegetables</span>
+        </a>
+        <a href="products.html?cat=Fruits" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=200&q=80" alt="Fruits" class="cat-thumb">
+          </div>
+          <span class="cat-name">Fruits</span>
+        </a>
+        <a href="products.html?cat=Dairy" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=200&q=80" alt="Dairy" class="cat-thumb">
+          </div>
+          <span class="cat-name">Dairy & Eggs</span>
+        </a>
+        <a href="products.html?cat=Meat" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=200&q=80" alt="Halal Meat" class="cat-thumb">
+          </div>
+          <span class="cat-name">Halal Go'sht & Parranda</span>
+        </a>
+        <a href="products.html?cat=Seafood" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=200&q=80" alt="Seafood" class="cat-thumb">
+          </div>
+          <span class="cat-name">Fresh Seafood</span>
+        </a>
+        <a href="products.html?cat=Bakery" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=200&q=80" alt="Bakery" class="cat-thumb">
+          </div>
+          <span class="cat-name">Bakery & Breads</span>
+        </a>
+        <a href="products.html?cat=Beverages" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=200&q=80" alt="Beverages" class="cat-thumb">
+          </div>
+          <span class="cat-name">Beverages</span>
+        </a>
+        <a href="products.html?cat=Household" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=200&q=80" alt="Household" class="cat-thumb">
+          </div>
+          <span class="cat-name">Household</span>
+        </a>
+        <a href="products.html?cat=Snacks" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?auto=format&fit=crop&w=200&q=80" alt="Snacks" class="cat-thumb">
+          </div>
+          <span class="cat-name">Snacks & Treats</span>
+        </a>
+        <a href="products.html?cat=Frozen" class="category-pill">
+          <div class="cat-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=200&q=80" alt="Frozen" class="cat-thumb">
+          </div>
+          <span class="cat-name">Frozen Foods</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROMO BANNERS ==================== -->
+  <section class="promo-banners">
+    <div class="container">
+      <div class="promo-grid">
+        <div class="promo-card promo-card-1">
+          <div class="promo-content">
+            <div class="promo-label">Limited Offer</div>
+            <div class="promo-title">Buy 2 Get 1 Free<br>on Dairy Products</div>
+            <a href="products.html?cat=Dairy" class="promo-cta">
+              Shop Now <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="promo-card promo-card-2">
+          <div class="promo-content">
+            <div class="promo-label">Fresh Farm Deal</div>
+            <div class="promo-title">Organic Greens<br>20% Off Today</div>
+            <a href="products.html?cat=Vegetables" class="promo-cta">
+              Grab Deal <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="promo-card promo-card-3">
+          <div class="promo-content">
+            <div class="promo-label">Free Express Shipping</div>
+            <div class="promo-title">Free Delivery<br>Orders Over $50</div>
+            <a href="products.html" class="promo-cta">
+              Shop More <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURED PRODUCTS ==================== -->
+  <section class="section" id="featuredSection" style="background:var(--bg);">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Saralangan Mahsulotlar</div>
+          <p style="color:var(--text-medium);font-size:0.9rem;margin-top:6px;">Har kuni fermalardan to'g'ridan-to'g'ri yangi keltirilgan tabiiy mahsulotlar</p>
+        </div>
+        <a href="products.html" class="view-all-link">Barchasini ko'rish <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- Interactive Category Filter Tabs -->
+      <div class="home-cat-tabs" id="homeCatTabs" style="display:flex; gap:10px; overflow-x:auto; padding-bottom:14px; margin-bottom:28px; scrollbar-width:none;">
+        <button class="cat-pill-btn active" onclick="filterHomeProducts('all', this)">
+          <span>✨ Barchasi</span>
+        </button>
+        <button class="cat-pill-btn" onclick="filterHomeProducts('Vegetables', this)">
+          <span>🥦 Sabzavotlar</span>
+        </button>
+        <button class="cat-pill-btn" onclick="filterHomeProducts('Fruits', this)">
+          <span>🍎 Mevalar</span>
+        </button>
+        <button class="cat-pill-btn" onclick="filterHomeProducts('Meat', this)">
+          <span>🥩 Halol Go'sht</span>
+        </button>
+        <button class="cat-pill-btn" onclick="filterHomeProducts('Dairy', this)">
+          <span>🥛 Sut & Tuxum</span>
+        </button>
+        <button class="cat-pill-btn" onclick="filterHomeProducts('Bakery', this)">
+          <span>🥖 Nonvoyxona</span>
+        </button>
+        <button class="cat-pill-btn" onclick="filterHomeProducts('Beverages', this)">
+          <span>🥤 Ichimliklar</span>
+        </button>
+        <button class="cat-pill-btn" onclick="filterHomeProducts('Snacks', this)">
+          <span>🍪 Shirinliklar</span>
+        </button>
+      </div>
+
+      <div class="products-grid" id="featuredProducts">
+        <!-- Rendered by JS -->
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-line w-60"></div><div class="skeleton skeleton-btn"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-line w-60"></div><div class="skeleton skeleton-btn"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-line w-60"></div><div class="skeleton skeleton-btn"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-line w-60"></div><div class="skeleton skeleton-btn"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== BEST SELLERS ==================== -->
+  <section class="section" style="background:var(--white);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">🏆 Best Sellers</div>
+        <a href="products.html?sort=rating" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="products-grid" id="bestSellers">
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-line w-60"></div><div class="skeleton skeleton-btn"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-line w-60"></div><div class="skeleton skeleton-btn"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-line w-60"></div><div class="skeleton skeleton-btn"></div></div></div>
+        <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-line w-60"></div><div class="skeleton skeleton-btn"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FLASH SALE ==================== -->
+  <section class="flash-sale-section">
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="flash-sale-header">
+        <div class="flash-sale-left">
+          <div class="flash-sale-badge">
+            <i class="fa-solid fa-bolt"></i> Flash Sale
+          </div>
+          <div class="flash-sale-title">Today's Hot Deals</div>
+        </div>
+        <div class="countdown-timer">
+          <span class="countdown-label">Ends in:</span>
+          <div class="countdown-parts">
+            <div class="countdown-part">
+              <div class="countdown-num" id="countdown-hours">00</div>
+              <div class="countdown-unit">hrs</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-part">
+              <div class="countdown-num" id="countdown-minutes">00</div>
+              <div class="countdown-unit">min</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-part">
+              <div class="countdown-num" id="countdown-seconds">00</div>
+              <div class="countdown-unit">sec</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flash-sale-grid" id="flashSaleProducts">
+        <div class="skeleton-card" style="background:rgba(255,255,255,0.9)"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-btn"></div></div></div>
+        <div class="skeleton-card" style="background:rgba(255,255,255,0.9)"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-btn"></div></div></div>
+        <div class="skeleton-card" style="background:rgba(255,255,255,0.9)"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-btn"></div></div></div>
+        <div class="skeleton-card" style="background:rgba(255,255,255,0.9)"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line w-40"></div><div class="skeleton skeleton-line w-80"></div><div class="skeleton skeleton-btn"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TRUST BADGES ==================== -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:36px;">
+        <div class="section-title">Why Choose FreshMart?</div>
+      </div>
+      <div class="trust-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-leaf"></i></div>
+          <div class="trust-title">100% Yangi & Tabiiy</div>
+          <div class="trust-desc">Barcha mahsulotlar har kuni yangi yetkazib beriladi va qat'iy nazoratdan o'tadi.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-award"></i></div>
+          <div class="trust-title">100% Halal Sertifikatlangan</div>
+          <div class="trust-desc">Barcha go'sht, tovuq va oziq-ovqat mahsulotlari 100% Halal va toza. Cho'chqa go'shti umuman yo'q.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-truck-fast"></i></div>
+          <div class="trust-title">Tezkor Yetkazish</div>
+          <div class="trust-desc">30 daqiqadan 2 soatgacha eshagingiz tagigacha yetkazib beramiz.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-rotate-left"></i></div>
+          <div class="trust-title">Kafolatlangan Qaytarish</div>
+          <div class="trust-desc">Mahsulot ma'qul kelmasa, 24 soat ichida savollarsiz almashtirib yoki pulingizni qaytarib beramiz.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section class="section" style="background:transparent; padding:64px 0;">
+    <div class="container">
+      <div class="section-header" style="justify-content:center; text-align:center; flex-direction:column; gap:8px;">
+        <span style="color:var(--primary); font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Mijozlarimiz fikri</span>
+        <h2 class="section-title" style="margin:0;">50,000+ Mamnun Xaridorlar</h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; margin-top:36px;">
+        <div style="background:white; padding:28px; border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,0.05); border:1px solid rgba(0,0,0,0.05);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Zuhra Karimova" style="width:52px; height:52px; border-radius:50%; object-fit:cover; border:2px solid var(--primary-lighter);">
+            <div>
+              <div style="font-weight:800; font-size:0.98rem; color:var(--text-dark);">Zuhra Karimova</div>
+              <div style="font-size:0.78rem; color:var(--text-light);">Toshkent, Chilonzor</div>
+            </div>
+            <div style="margin-left:auto; color:#FFC107; font-size:0.85rem;">★★★★★</div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-medium); line-height:1.7;">
+            "Har kuni ertalab bolalarim uchun yangi sut va mevalarni FreshMartdan buyurtma qilaman. 40 daqiqa ichida doim issiq va toza holatda yetib keladi. Ayniqsa mevalari shira va juda saralangan!"
+          </p>
+        </div>
+
+        <div style="background:white; padding:28px; border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,0.05); border:1px solid rgba(0,0,0,0.05);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Bekzod Aliyev" style="width:52px; height:52px; border-radius:50%; object-fit:cover; border:2px solid var(--primary-lighter);">
+            <div>
+              <div style="font-weight:800; font-size:0.98rem; color:var(--text-dark);">Bekzod Aliyev</div>
+              <div style="font-size:0.78rem; color:var(--text-light);">Toshkent, Mirobod</div>
+            </div>
+            <div style="margin-left:auto; color:#FFC107; font-size:0.85rem;">★★★★★</div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-medium); line-height:1.7;">
+            "Go'sht mahsulotlari 100% Halol ekanligi va tozaligi eng katta ustunligi. Angus mol go'shti qiyma va yangi qo'zi go'shti nihoyatda sifatli chiqdi. Rahmat jamoaga!"
+          </p>
+        </div>
+
+        <div style="background:white; padding:28px; border-radius:20px; box-shadow:0 4px 20px rgba(0,0,0,0.05); border:1px solid rgba(0,0,0,0.05);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Madina Umarova" style="width:52px; height:52px; border-radius:50%; object-fit:cover; border:2px solid var(--primary-lighter);">
+            <div>
+              <div style="font-weight:800; font-size:0.98rem; color:var(--text-dark);">Madina Umarova</div>
+              <div style="font-size:0.78rem; color:var(--text-light);">Toshkent, Yunusobod</div>
+            </div>
+            <div style="margin-left:auto; color:#FFC107; font-size:0.85rem;">★★★★★</div>
+          </div>
+          <p style="font-size:0.88rem; color:var(--text-medium); line-height:1.7;">
+            "Sayt dizayni juda qulay va tezkor ishlaydi! FRESH10 kodi bilan 10% tejab qoldim. Endi bozorga borib yurishning hojati qolmadi, barchasini uydan turib olaman."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== APP DOWNLOAD BANNER ==================== -->
+  <section style="padding:60px 0; background:var(--white);">
+    <div class="container">
+      <div style="background:radial-gradient(circle at 85% 30%, rgba(255, 90, 54, 0.3) 0%, transparent 60%), linear-gradient(135deg, #0B1120 0%, #0F172A 55%, #1E3A8A 100%); border-radius:28px; padding:48px 56px; color:white; display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap; box-shadow:0 20px 50px rgba(15,23,42,0.3); border:1px solid rgba(255,90,54,0.25);">
+        <div style="max-width:540px;">
+          <span style="background:rgba(255,255,255,0.18); font-size:0.8rem; font-weight:700; padding:6px 14px; border-radius:999px; text-transform:uppercase; letter-spacing:1px; display:inline-block; margin-bottom:16px;">Tez Kunda</span>
+          <h2 style="font-size:clamp(1.8rem, 4vw, 2.5rem); font-weight:800; line-height:1.2; margin-bottom:14px;">FreshMart Mobil Ilovasi</h2>
+          <p style="font-size:1rem; color:rgba(255,255,255,0.85); line-height:1.7; margin-bottom:28px;">
+            Buyurtmalaringizni yanada qulay va 1 bosishda amalga oshiring. Jonli xaritada kuryer harakatini kuzatib boring va har xaridda keshbek yig'ing!
+          </p>
+          <div style="display:flex; gap:16px; flex-wrap:wrap;">
+            <a href="#" class="btn btn-white btn-lg" style="box-shadow:0 6px 20px rgba(0,0,0,0.15);">
+              <i class="fa-brands fa-apple" style="font-size:1.3rem;"></i> App Store
+            </a>
+            <a href="#" class="btn btn-lg" style="background:rgba(255,255,255,0.15); border:2px solid rgba(255,255,255,0.4); color:white; backdrop-filter:blur(6px);">
+              <i class="fa-brands fa-google-play" style="font-size:1.2rem;"></i> Google Play
+            </a>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:20px; background:rgba(255,255,255,0.12); padding:24px 32px; border-radius:20px; border:1px solid rgba(255,255,255,0.2); backdrop-filter:blur(8px);">
+          <div style="background:white; padding:12px; border-radius:14px; box-shadow:0 8px 20px rgba(0,0,0,0.15);">
+            <i class="fa-solid fa-qrcode" style="font-size:4rem; color:#FF5A36;"></i>
+          </div>
+          <div>
+            <div style="font-weight:800; font-size:1.1rem; margin-bottom:4px;">QR-kodni skanerlang</div>
+            <div style="font-size:0.85rem; color:rgba(255,255,255,0.8);">Telefon kamerangiz orqali ilovani tezda oching</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text" style="display:block;margin-bottom:14px;">Fresh<span style="color:#FF6F00">Mart</span></span>
+          <p>Your trusted online grocery store delivering fresh, quality products right to your doorstep. Shop smart, eat fresh.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <div class="footer-links">
+            <a href="products.html?cat=Vegetables"><i class="fa-solid fa-chevron-right"></i> Vegetables</a>
+            <a href="products.html?cat=Fruits"><i class="fa-solid fa-chevron-right"></i> Fruits</a>
+            <a href="products.html?cat=Dairy"><i class="fa-solid fa-chevron-right"></i> Dairy & Eggs</a>
+            <a href="products.html?cat=Meat"><i class="fa-solid fa-chevron-right"></i> Halal Go'sht & Parranda</a>
+            <a href="products.html?cat=Bakery"><i class="fa-solid fa-chevron-right"></i> Bakery</a>
+            <a href="products.html?cat=Beverages"><i class="fa-solid fa-chevron-right"></i> Beverages</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Customer Service</h4>
+          <div class="footer-links">
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Help Center</a>
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Track Your Order</a>
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Returns & Refunds</a>
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Shipping Policy</a>
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Privacy Policy</a>
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Terms of Service</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.6);margin-bottom:4px;">Get exclusive deals & fresh updates.</p>
+          <div class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email address">
+            <button class="newsletter-btn" onclick="subscribeNewsletter(this)">Go</button>
+          </div>
+          <div style="margin-top:20px;">
+            <h4>Contact</h4>
+            <div class="footer-links" style="margin-top:10px;">
+              <a href="tel:+18001234567"><i class="fa-solid fa-phone"></i> +1 800 123 4567</a>
+              <a href="mailto:support@freshmart.com"><i class="fa-solid fa-envelope"></i> support@freshmart.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 FreshMart. All rights reserved.</p>
+        <div class="footer-payments">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">AMEX</span>
+          <span class="payment-icon">PayPal</span>
+          <span class="payment-icon">Apple Pay</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Mobile Bottom Nav (App-like) -->
+  <div class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-bottom-nav-item active">
+      <i class="fa-solid fa-house"></i>
+      <span>Bosh sahifa</span>
+    </a>
+    <a href="products.html" class="mobile-bottom-nav-item">
+      <i class="fa-solid fa-grid-2"></i>
+      <span>Katalog</span>
+    </a>
+    <a href="cart.html" class="mobile-bottom-nav-item">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Savat</span>
+      <span class="cart-badge" style="display:none">0</span>
+    </a>
+    <a href="profile.html" class="mobile-bottom-nav-item">
+      <i class="fa-solid fa-user"></i>
+      <span>Profil</span>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // ========== HOME PAGE SPECIFIC JS ==========
+    let currentHomeCat = 'all';
+
+    window.filterHomeProducts = function(cat, btnEl) {
+      currentHomeCat = cat;
+
+      // Update active tabs
+      document.querySelectorAll('#homeCatTabs .cat-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+
+      const featuredGrid = document.getElementById('featuredProducts');
+      if (!featuredGrid) return;
+
+      let list = PRODUCTS.filter(p => p.inStock);
+      if (cat !== 'all') {
+        list = list.filter(p => p.category.toLowerCase() === cat.toLowerCase());
+      }
+
+      featuredGrid.style.opacity = '0.5';
+      setTimeout(() => {
+        if (list.length === 0) {
+          featuredGrid.innerHTML = `
+            <div style="grid-column:1/-1; text-align:center; padding:40px; color:#888;">
+              <p style="font-size:1.1rem; font-weight:700;">Bu toifada mahsulot topilmadi</p>
+            </div>
+          `;
+        } else {
+          featuredGrid.innerHTML = list.slice(0, 8).map(p => buildProductCard(p)).join('');
+        }
+        featuredGrid.style.opacity = '1';
+      }, 150);
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Intercept top category strip clicks on home page for instant filtering
+      document.querySelectorAll('.categories-scroll .category-pill').forEach(pill => {
+        pill.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = pill.getAttribute('href');
+          const match = href.match(/cat=([^&]+)/);
+          if (match) {
+            const cat = decodeURIComponent(match[1]);
+            const targetBtn = document.querySelector(`#homeCatTabs [onclick*="${cat}"]`);
+            if (targetBtn) {
+              filterHomeProducts(cat, targetBtn);
+            } else {
+              filterHomeProducts(cat);
+            }
+            document.getElementById('featuredSection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Initial Render Featured Products
+      filterHomeProducts('all');
+
+      // Render Best Sellers (by rating)
+      const bestSellers = [...PRODUCTS]
+        .filter(p => p.inStock)
+        .sort((a, b) => b.rating - a.rating)
+        .slice(0, 4);
+      const bestGrid = document.getElementById('bestSellers');
+      if (bestGrid) {
+        setTimeout(() => {
+          bestGrid.innerHTML = bestSellers.map(p => buildProductCard(p)).join('');
+        }, 300);
+      }
+
+      // Render Flash Sale (highest discounts)
+      const flashSale = [...PRODUCTS]
+        .filter(p => p.inStock && p.discountPercent > 0)
+        .sort((a, b) => b.discountPercent - a.discountPercent)
+        .slice(0, 4);
+      const flashGrid = document.getElementById('flashSaleProducts');
+      if (flashGrid) {
+        setTimeout(() => {
+          flashGrid.innerHTML = flashSale.map(p => buildProductCard(p)).join('');
+        }, 400);
+      }
+    });
+  </script>
+</body>
+</html>

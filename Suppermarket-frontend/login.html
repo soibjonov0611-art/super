@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreshMart - Sign In / Register</title>
+  <meta name="description" content="Sign in or create an account at FreshMart for the freshest groceries and fast delivery.">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <!-- Left Panel - Branding & Illustration -->
+    <div class="auth-left">
+      <div class="auth-left-blob auth-left-blob-1"></div>
+      <div class="auth-left-blob auth-left-blob-2"></div>
+
+      <div class="auth-brand">
+        <div class="logo-icon"><i class="fa-solid fa-leaf" style="color:white;font-size:1.8rem;"></i></div>
+        <h1 class="auth-brand-name">Fresh<span>Mart</span></h1>
+        <p class="auth-brand-tagline">Farm-fresh groceries delivered in minutes</p>
+      </div>
+
+      <div class="auth-illustration">
+        <div style="width:100%;height:180px;border-radius:18px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.25);margin-bottom:24px;border:2px solid rgba(255,255,255,0.2);">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="Fresh Produce" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        
+        <div class="auth-features">
+          <div class="auth-feature">
+            <div class="auth-feature-icon"><i class="fa-solid fa-leaf" style="color:#A5D6A7;"></i></div>
+            <div class="auth-feature-text">
+              <h4>100% Organic & Fresh</h4>
+              <p>Hand-picked daily from local certified farms</p>
+            </div>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon"><i class="fa-solid fa-bolt" style="color:#FFD54F;"></i></div>
+            <div class="auth-feature-text">
+              <h4>Fast Delivery</h4>
+              <p>Groceries at your doorstep in under 30 minutes</p>
+            </div>
+          </div>
+          <div class="auth-feature">
+            <div class="auth-feature-icon"><i class="fa-solid fa-tag" style="color:#FFAB91;"></i></div>
+            <div class="auth-feature-text">
+              <h4>Best Prices & Discounts</h4>
+              <p>Daily flash deals and member-exclusive savings</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel - Forms -->
+    <div class="auth-right">
+      <div class="auth-form-container">
+        <!-- Back Link -->
+        <div style="margin-bottom: 24px;">
+          <a href="index.html" style="color: var(--text-medium); font-size: 0.88rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Store
+          </a>
+        </div>
+
+        <!-- Header -->
+        <div class="auth-form-header">
+          <h2>Welcome back! 👋</h2>
+          <p>New to FreshMart? <a href="#" onclick="switchToRegister()">Create an account</a></p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="auth-tabs">
+          <button type="button" class="auth-tab active" data-target="loginPanel">
+            <i class="fa-solid fa-right-to-bracket"></i> Sign In
+          </button>
+          <button type="button" class="auth-tab" data-target="registerPanel">
+            <i class="fa-solid fa-user-plus"></i> Register
+          </button>
+        </div>
+
+        <!-- Login Form Panel -->
+        <div class="auth-form-panel active" id="loginPanel">
+          <form id="loginForm" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="loginEmail">Email Address <span>*</span></label>
+              <div class="form-input-wrapper">
+                <i class="fa-regular fa-envelope form-input-icon"></i>
+                <input type="email" id="loginEmail" class="form-input" placeholder="name@example.com" autocomplete="email">
+              </div>
+              <div class="form-error" id="loginEmailError"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="loginPassword">Password <span>*</span></label>
+              <div class="form-input-wrapper">
+                <i class="fa-solid fa-lock form-input-icon"></i>
+                <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password" autocomplete="current-password">
+                <button type="button" class="form-input-toggle" data-target="loginPassword" aria-label="Toggle password visibility">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <div class="form-error" id="loginPasswordError"></div>
+            </div>
+
+            <div class="form-extra-row">
+              <label class="form-check">
+                <input type="checkbox" id="rememberMe">
+                <span class="form-check-mark"><i class="fa-solid fa-check"></i></span>
+                Remember me
+              </label>
+              <a href="#" class="forgot-link" onclick="forgotPassword(event)">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="auth-btn" id="loginSubmitBtn">
+              <i class="fa-solid fa-right-to-bracket"></i> Sign In
+            </button>
+          </form>
+
+          <div class="social-divider">
+            <span>Or continue with</span>
+          </div>
+
+          <div class="social-buttons">
+            <button type="button" class="social-btn" onclick="socialLogin('Google')">
+              <i class="fa-brands fa-google"></i> Google
+            </button>
+            <button type="button" class="social-btn" onclick="socialLogin('Facebook')">
+              <i class="fa-brands fa-facebook-f"></i> Facebook
+            </button>
+          </div>
+        </div>
+
+        <!-- Register Form Panel -->
+        <div class="auth-form-panel" id="registerPanel">
+          <form id="registerForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="regFirstName">First Name <span>*</span></label>
+                <div class="form-input-wrapper">
+                  <i class="fa-regular fa-user form-input-icon"></i>
+                  <input type="text" id="regFirstName" class="form-input" placeholder="John">
+                </div>
+                <div class="form-error" id="regFirstNameError"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="regLastName">Last Name <span>*</span></label>
+                <div class="form-input-wrapper">
+                  <i class="fa-regular fa-user form-input-icon"></i>
+                  <input type="text" id="regLastName" class="form-input" placeholder="Doe">
+                </div>
+                <div class="form-error" id="regLastNameError"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regEmail">Email Address <span>*</span></label>
+              <div class="form-input-wrapper">
+                <i class="fa-regular fa-envelope form-input-icon"></i>
+                <input type="email" id="regEmail" class="form-input" placeholder="name@example.com" autocomplete="email">
+              </div>
+              <div class="form-error" id="regEmailError"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regPhone">Phone Number</label>
+              <div class="form-input-wrapper">
+                <i class="fa-solid fa-phone form-input-icon"></i>
+                <input type="tel" id="regPhone" class="form-input" placeholder="+1 (555) 000-0000">
+              </div>
+              <div class="form-error" id="regPhoneError"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regPassword">Password <span>*</span></label>
+              <div class="form-input-wrapper">
+                <i class="fa-solid fa-lock form-input-icon"></i>
+                <input type="password" id="regPassword" class="form-input" placeholder="At least 8 characters" autocomplete="new-password">
+                <button type="button" class="form-input-toggle" data-target="regPassword" aria-label="Toggle password visibility">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <div class="password-strength">
+                <div class="strength-bars">
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                  <div class="strength-bar"></div>
+                </div>
+                <span class="strength-label"></span>
+              </div>
+              <div class="form-error" id="regPasswordError"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regConfirmPassword">Confirm Password <span>*</span></label>
+              <div class="form-input-wrapper">
+                <i class="fa-solid fa-lock form-input-icon"></i>
+                <input type="password" id="regConfirmPassword" class="form-input" placeholder="Repeat your password" autocomplete="new-password">
+                <button type="button" class="form-input-toggle" data-target="regConfirmPassword" aria-label="Toggle password visibility">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <div class="form-error" id="regConfirmPasswordError"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-check">
+                <input type="checkbox" id="regTerms">
+                <span class="form-check-mark"><i class="fa-solid fa-check"></i></span>
+                <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
+              </label>
+            </div>
+
+            <button type="submit" class="auth-btn" id="registerSubmitBtn">
+              <i class="fa-solid fa-user-plus"></i> Create Account
+            </button>
+          </form>
+
+          <div class="social-divider">
+            <span>Or register with</span>
+          </div>
+
+          <div class="social-buttons">
+            <button type="button" class="social-btn" onclick="socialLogin('Google')">
+              <i class="fa-brands fa-google"></i> Google
+            </button>
+            <button type="button" class="social-btn" onclick="socialLogin('Facebook')">
+              <i class="fa-brands fa-facebook-f"></i> Facebook
+            </button>
+          </div>
+        </div>
+
+        <p class="auth-footer-note">
+          Protected by industry-standard encryption &bull; FreshMart 2026
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

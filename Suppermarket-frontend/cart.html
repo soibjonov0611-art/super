@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - FreshMart</title>
+  <meta name="description" content="Review your cart and proceed to checkout at FreshMart.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+
+  <!-- ==================== TOP ANNOUNCEMENT BAR ==================== -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <div class="top-bar-left">
+          <div class="top-bar-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>\$50+ buyurtmalarga <strong>bepul yetkazib berish</strong></span>
+          </div>
+          <div class="top-bar-item">
+            <span class="top-bar-badge">KOD: FRESH10</span>
+            <span>10% chegirma oling</span>
+          </div>
+        </div>
+        <div class="top-bar-right">
+          <div class="top-bar-item">
+            <i class="fa-solid fa-clock"></i>
+            <span>Har kuni: 08:00 – 23:00</span>
+          </div>
+          <div class="top-bar-item">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+998712000011" style="color:inherit;font-weight:700;">+998 (71) 200-00-11</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo">
+          <div class="logo-icon"><i class="fa-solid fa-leaf" style="color:white;font-size:1.1rem;"></i></div>
+          <span class="logo-text">Fresh<span>Mart</span></span>
+        </a>
+
+        <div class="navbar-search">
+          <select class="search-category">
+            <option>All</option>
+            <option>Vegetables</option>
+            <option>Fruits</option>
+            <option>Dairy</option>
+            <option>Meat</option>
+            <option>Bakery</option>
+            <option>Beverages</option>
+            <option>Snacks</option>
+            <option>Frozen</option>
+          </select>
+          <input type="text" class="search-input" placeholder="Search for groceries, products...">
+          <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="navbar-actions">
+          <div class="nav-location">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Deliver to <strong>12345</strong></span>
+          </div>
+          <a href="products.html" class="nav-action-btn" title="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </a>
+          <a href="cart.html" class="nav-action-btn cart-action-btn" title="Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="badge cart-badge" style="display:none">0</span>
+          </a>
+          <a href="login.html" class="nav-user-avatar" title="Account">
+            <i class="fa-solid fa-user"></i>
+          </a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-search">
+        <input type="text" class="mobile-search-input" placeholder="Search groceries...">
+        <button class="mobile-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <a href="index.html" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="products.html" class="mobile-nav-link"><i class="fa-solid fa-store"></i> Products</a>
+      <a href="cart.html" class="mobile-nav-link active">
+        <i class="fa-solid fa-cart-shopping"></i> Cart
+        <span class="cart-badge" style="display:none; margin-left:auto; background:var(--accent); color:white; border-radius:999px; font-size:.7rem; font-weight:700; padding:1px 7px;">0</span>
+      </a>
+      <a href="profile.html" class="mobile-nav-link"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="login.html" class="mobile-nav-link"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+    </div>
+  </nav>
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <div class="cart-page-header">
+    <div class="container">
+      <h1><i class="fa-solid fa-cart-shopping" style="font-size:1.4rem;margin-right:10px;"></i>Shopping Cart</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+        <span>Shopping Cart</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CART PROGRESS ==================== -->
+  <div class="cart-progress">
+    <div class="container">
+      <div class="cart-steps">
+        <div class="cart-step active">
+          <div class="step-circle">1</div>
+          <span class="step-label">My Cart</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="cart-step">
+          <div class="step-circle">2</div>
+          <span class="step-label">Address</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="cart-step">
+          <div class="step-circle">3</div>
+          <span class="step-label">Payment</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="cart-step">
+          <div class="step-circle">4</div>
+          <span class="step-label">Confirm</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN CART AREA ==================== -->
+  <div class="container">
+
+    <!-- ===== EMPTY STATE ===== -->
+    <div id="emptyCartState" style="display:none; padding:60px 0;">
+      <div class="empty-cart">
+        <div class="empty-cart-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added any items yet.<br>Explore our fresh products and start shopping!</p>
+        <a href="products.html" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-store"></i> Continue Shopping
+        </a>
+      </div>
+    </div>
+
+    <!-- ===== CART LAYOUT ===== -->
+    <div class="cart-layout" id="cartItemsSection">
+
+      <!-- Cart Items -->
+      <div class="cart-items-section">
+
+        <div class="cart-items-header">
+          <h2>
+            <i class="fa-solid fa-box-open"></i>
+            Cart Items
+            <span class="cart-count-badge" id="cartCountBadge">0</span>
+          </h2>
+          <button class="clear-cart-btn" id="clearCartBtn">
+            <i class="fa-solid fa-trash"></i> Clear Cart
+          </button>
+        </div>
+
+        <div id="cartItemsList">
+          <!-- Rendered by cart.js -->
+        </div>
+
+        <a href="products.html" class="continue-shopping-link">
+          <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+        </a>
+
+      </div>
+
+      <!-- Order Summary -->
+      <div id="orderSummary">
+        <div class="order-summary">
+          <div class="order-summary-header">
+            <h3><i class="fa-solid fa-receipt" style="margin-right:8px;"></i>Order Summary</h3>
+          </div>
+
+          <div class="order-summary-body">
+            <div class="summary-line">
+              <span>Subtotal</span>
+              <span id="summarySubtotal">$0.00</span>
+            </div>
+            <div class="summary-line" id="summaryDiscountLine" style="display:none;" class="discount">
+              <span style="color:var(--primary);"><i class="fa-solid fa-tag" style="margin-right:4px;"></i>Discount</span>
+              <span id="summaryDiscount" style="color:var(--primary);">-$0.00</span>
+            </div>
+            <div class="summary-line">
+              <span>Delivery Fee</span>
+              <span id="summaryDelivery">$4.99</span>
+            </div>
+            <div style="font-size:0.78rem;color:var(--text-light);" id="deliveryFreeMsg">
+              Add $50.00 more for free delivery
+            </div>
+            <hr class="summary-divider">
+            <div class="summary-total">
+              <span class="total-label">Total</span>
+              <span class="total-amount" id="summaryTotal">$0.00</span>
+            </div>
+          </div>
+
+          <!-- Discount Code -->
+          <div class="discount-section">
+            <div class="discount-label">
+              <i class="fa-solid fa-ticket" style="color:var(--primary);margin-right:6px;"></i>
+              Discount Code
+            </div>
+            <div class="discount-input-row">
+              <input type="text" class="discount-input" id="discountInput" placeholder="Enter code" maxlength="12">
+              <button class="apply-btn" id="applyDiscountBtn">Apply</button>
+            </div>
+            <div class="discount-msg" id="discountMsg"></div>
+            <div style="margin-top:8px;font-size:0.75rem;color:var(--text-light);">
+              Try: <strong style="color:var(--primary);cursor:pointer;" onclick="document.getElementById('discountInput').value='FRESH10'">FRESH10</strong>,
+              <strong style="color:var(--primary);cursor:pointer;" onclick="document.getElementById('discountInput').value='SAVE20'">SAVE20</strong>,
+              <strong style="color:var(--primary);cursor:pointer;" onclick="document.getElementById('discountInput').value='NEWUSER'">NEWUSER</strong>
+            </div>
+          </div>
+
+          <!-- Checkout Button -->
+          <div class="checkout-section">
+            <button class="checkout-btn" onclick="proceedToCheckout()">
+              <i class="fa-solid fa-lock"></i>
+              Proceed to Checkout
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <div class="order-secure-note">
+              <i class="fa-solid fa-shield-halved" style="color:var(--primary);"></i>
+              Secure & encrypted checkout
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust mini badges -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;">
+          <div style="background:var(--white);border-radius:var(--radius-sm);padding:12px;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-sm);">
+            <i class="fa-solid fa-rotate-left" style="color:var(--primary);font-size:1.1rem;"></i>
+            <div>
+              <div style="font-size:0.78rem;font-weight:700;color:var(--text-dark);">Easy Returns</div>
+              <div style="font-size:0.7rem;color:var(--text-light);">Within 24 hours</div>
+            </div>
+          </div>
+          <div style="background:var(--white);border-radius:var(--radius-sm);padding:12px;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-sm);">
+            <i class="fa-solid fa-truck-fast" style="color:var(--primary);font-size:1.1rem;"></i>
+            <div>
+              <div style="font-size:0.78rem;font-weight:700;color:var(--text-dark);">Fast Delivery</div>
+              <div style="font-size:0.7rem;color:var(--text-light);">Same day available</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== RECOMMENDATIONS ==================== -->
+  <div class="recommended-section" style="background:var(--bg);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title">You Might Also Like</div>
+        <a href="products.html" class="view-all-link">View All <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="recommended-grid" id="recommendationsGrid">
+        <!-- Rendered by cart.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text" style="display:block;margin-bottom:14px;">Fresh<span style="color:#FF6F00">Mart</span></span>
+          <p>Your trusted online grocery store delivering fresh, quality products right to your doorstep.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <div class="footer-links">
+            <a href="products.html?cat=Vegetables"><i class="fa-solid fa-chevron-right"></i> Vegetables</a>
+            <a href="products.html?cat=Fruits"><i class="fa-solid fa-chevron-right"></i> Fruits</a>
+            <a href="products.html?cat=Dairy"><i class="fa-solid fa-chevron-right"></i> Dairy</a>
+            <a href="products.html?cat=Meat"><i class="fa-solid fa-chevron-right"></i> Halal Go'sht & Parranda</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Service</h4>
+          <div class="footer-links">
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Help Center</a>
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Track Your Order</a>
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Returns & Refunds</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <p style="font-size:.85rem;color:rgba(255,255,255,.6);margin-bottom:4px;">Get exclusive deals.</p>
+          <div class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email">
+            <button class="newsletter-btn" onclick="subscribeNewsletter(this)">Go</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FreshMart. All rights reserved.</p>
+        <div class="footer-payments">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MC</span>
+          <span class="payment-icon">PayPal</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Nav (App-like) -->
+  <div class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-bottom-nav-item">
+      <i class="fa-solid fa-house"></i>
+      <span>Bosh sahifa</span>
+    </a>
+    <a href="products.html" class="mobile-bottom-nav-item">
+      <i class="fa-solid fa-grid-2"></i>
+      <span>Katalog</span>
+    </a>
+    <a href="cart.html" class="mobile-bottom-nav-item active">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Savat</span>
+      <span class="cart-badge" style="display:none">0</span>
+    </a>
+    <a href="profile.html" class="mobile-bottom-nav-item">
+      <i class="fa-solid fa-user"></i>
+      <span>Profil</span>
+    </a>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

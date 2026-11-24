@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - FreshMart</title>
+  <meta name="description" content="Manage your FreshMart account, orders, wishlist and addresses.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ===== PROFILE PAGE STYLES ===== */
+    .profile-header {
+      background: radial-gradient(circle at 85% 20%, rgba(255, 90, 54, 0.25) 0%, transparent 50%),
+                  radial-gradient(circle at 15% 80%, rgba(37, 99, 235, 0.18) 0%, transparent 50%),
+                  linear-gradient(135deg, #0B1120 0%, #0F172A 50%, #1E293B 100%);
+      padding: 44px 0;
+      color: white;
+    }
+
+    .profile-header h1 { font-size: 2.1rem; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.5px; }
+
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.88rem; color: rgba(255,255,255,0.75);
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.85); font-weight: 500; }
+    .breadcrumb a:hover { color: white; text-decoration: underline; }
+    .breadcrumb-sep { font-size: 0.75rem; opacity: 0.6; }
+
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 32px;
+      padding: 40px 0 70px;
+      align-items: start;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .profile-sidebar {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      position: sticky;
+      top: calc(var(--navbar-height) + 20px);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .profile-user-card {
+      background: linear-gradient(135deg, #FF5A36 0%, #FF7A45 60%, #FFA000 100%);
+      padding: 32px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+      border: 3px solid rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin: 0 auto 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    }
+
+    .profile-user-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+    .profile-user-email { font-size: 0.82rem; color: rgba(255,255,255,0.75); }
+
+    .profile-nav { padding: 12px 0; }
+
+    .profile-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-medium);
+      cursor: pointer;
+      transition: all var(--transition);
+      border-left: 3px solid transparent;
+      text-decoration: none;
+    }
+
+    .profile-nav-item:hover {
+      background: var(--primary-pale);
+      color: var(--primary);
+      border-left-color: var(--primary-lighter);
+    }
+
+    .profile-nav-item.active {
+      background: var(--primary-pale);
+      color: var(--primary);
+      border-left-color: var(--primary);
+      font-weight: 600;
+    }
+
+    .profile-nav-item i { width: 18px; text-align: center; font-size: 0.95rem; }
+
+    .profile-nav-item.logout { color: #E53935; }
+    .profile-nav-item.logout:hover { background: #fff0f0; border-left-color: #E53935; }
+
+    /* ===== MAIN CONTENT ===== */
+    .profile-main { display: flex; flex-direction: column; gap: 20px; }
+
+    .profile-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .profile-card-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .profile-card-header h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .profile-tab-content { display: none; }
+    .profile-tab-content.active { display: block; }
+
+    /* ===== ORDERS TABLE ===== */
+    .orders-table { width: 100%; border-collapse: collapse; }
+
+    .orders-table th {
+      background: var(--bg);
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-medium);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .orders-table td {
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .orders-table tr:last-child td { border-bottom: none; }
+
+    .orders-table tr:hover td { background: #fafafa; }
+
+    .order-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .status-delivered { background: #E8F5E9; color: var(--primary); }
+    .status-processing { background: #FFF3E0; color: #E65100; }
+    .status-cancelled  { background: #FFEBEE; color: #E53935; }
+    .status-shipped    { background: #E3F2FD; color: #1565C0; }
+
+    .order-action-btn {
+      font-size: 0.8rem;
+      color: var(--primary);
+      background: var(--primary-pale);
+      border: none;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .order-action-btn:hover { background: var(--primary); color: white; }
+
+    /* ===== WISHLIST GRID ===== */
+    .wishlist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 20px;
+    }
+
+    /* ===== ADDRESSES ===== */
+    .addresses-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 20px;
+    }
+
+    .address-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      position: relative;
+      transition: all var(--transition);
+    }
+
+    .address-card:hover { border-color: var(--primary-lighter); }
+
+    .address-card.default { border-color: var(--primary); background: var(--primary-pale); }
+
+    .address-default-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+    }
+
+    .address-name { font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+    .address-line { font-size: 0.85rem; color: var(--text-medium); line-height: 1.6; }
+
+    .address-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .addr-btn {
+      font-size: 0.78rem;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+    }
+
+    .addr-btn-edit { background: var(--primary-pale); color: var(--primary); }
+    .addr-btn-edit:hover { background: var(--primary); color: white; }
+    .addr-btn-delete { background: #ffebee; color: #E53935; }
+    .addr-btn-delete:hover { background: #E53935; color: white; }
+
+    .add-address-card {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all var(--transition);
+      min-height: 140px;
+      color: var(--text-light);
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .add-address-card:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-pale);
+    }
+
+    .add-address-card i { font-size: 1.5rem; }
+
+    /* ===== SETTINGS FORM ===== */
+    .settings-form { padding: 24px; }
+
+    .settings-section { margin-bottom: 32px; }
+    .settings-section-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .settings-field { display: flex; flex-direction: column; gap: 6px; }
+
+    .settings-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .settings-input {
+      padding: 11px 14px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--text-dark);
+      transition: border-color var(--transition);
+      background: var(--bg);
+    }
+
+    .settings-input:focus {
+      border-color: var(--primary);
+      background: white;
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(76,175,80,0.12);
+    }
+
+    .settings-save-btn {
+      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition);
+    }
+
+    .settings-save-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(46,125,50,0.3);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .wishlist-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .profile-layout { grid-template-columns: 1fr; }
+      .profile-sidebar { position: static; }
+      .addresses-grid { grid-template-columns: 1fr; }
+      .settings-grid { grid-template-columns: 1fr; }
+      .wishlist-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .orders-table { font-size: 0.78rem; }
+      .orders-table th, .orders-table td { padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== TOP ANNOUNCEMENT BAR ==================== -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-inner">
+        <div class="top-bar-left">
+          <div class="top-bar-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>\$50+ buyurtmalarga <strong>bepul yetkazib berish</strong></span>
+          </div>
+          <div class="top-bar-item">
+            <span class="top-bar-badge">KOD: FRESH10</span>
+            <span>10% chegirma oling</span>
+          </div>
+        </div>
+        <div class="top-bar-right">
+          <div class="top-bar-item">
+            <i class="fa-solid fa-clock"></i>
+            <span>Har kuni: 08:00 – 23:00</span>
+          </div>
+          <div class="top-bar-item">
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+998712000011" style="color:inherit;font-weight:700;">+998 (71) 200-00-11</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-logo">
+          <div class="logo-icon"><i class="fa-solid fa-leaf" style="color:white;font-size:1.1rem;"></i></div>
+          <span class="logo-text">Fresh<span>Mart</span></span>
+        </a>
+
+        <div class="navbar-search">
+          <select class="search-category">
+            <option>All</option>
+            <option>Vegetables</option>
+            <option>Fruits</option>
+            <option>Dairy</option>
+            <option>Meat</option>
+            <option>Bakery</option>
+          </select>
+          <input type="text" class="search-input" placeholder="Search for groceries...">
+          <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="navbar-actions">
+          <a href="products.html" class="nav-action-btn" title="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </a>
+          <a href="cart.html" class="nav-action-btn cart-action-btn" title="Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="badge cart-badge" style="display:none">0</span>
+          </a>
+          <a href="profile.html" class="nav-user-avatar" title="Profile">
+            <i class="fa-solid fa-user"></i>
+          </a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-nav-search">
+        <input type="text" class="mobile-search-input" placeholder="Search groceries...">
+        <button class="mobile-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <a href="index.html" class="mobile-nav-link"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="products.html" class="mobile-nav-link"><i class="fa-solid fa-store"></i> Products</a>
+      <a href="cart.html" class="mobile-nav-link"><i class="fa-solid fa-cart-shopping"></i> Cart</a>
+      <a href="profile.html" class="mobile-nav-link active"><i class="fa-solid fa-user"></i> Profile</a>
+    </div>
+  </nav>
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <div class="profile-header">
+    <div class="container">
+      <h1><i class="fa-solid fa-user" style="font-size:1.3rem;margin-right:10px;"></i>My Account</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+        <span>My Profile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PROFILE LAYOUT ==================== -->
+  <div class="container">
+    <div class="profile-layout">
+
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="profile-sidebar">
+        <div class="profile-user-card">
+          <div class="profile-avatar" id="profileAvatar">JD</div>
+          <div class="profile-user-name" id="profileName">John Doe</div>
+          <div class="profile-user-email" id="profileEmail">john@example.com</div>
+        </div>
+
+        <nav class="profile-nav">
+          <a class="profile-nav-item active" onclick="switchTab('orders')" href="#">
+            <i class="fa-solid fa-box"></i> My Orders
+          </a>
+          <a class="profile-nav-item" onclick="switchTab('wishlist')" href="#">
+            <i class="fa-regular fa-heart"></i> Wishlist
+          </a>
+          <a class="profile-nav-item" onclick="switchTab('addresses')" href="#">
+            <i class="fa-solid fa-location-dot"></i> Addresses
+          </a>
+          <a class="profile-nav-item" onclick="switchTab('payment')" href="#">
+            <i class="fa-solid fa-credit-card"></i> Payment Methods
+          </a>
+          <a class="profile-nav-item" onclick="switchTab('settings')" href="#">
+            <i class="fa-solid fa-gear"></i> Settings
+          </a>
+          <div style="border-top:1px solid var(--border);margin:8px 0;"></div>
+          <a class="profile-nav-item logout" onclick="handleLogout()" href="#">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+          </a>
+        </nav>
+      </aside>
+
+      <!-- ===== MAIN ===== -->
+      <main class="profile-main">
+
+        <!-- ORDERS TAB -->
+        <div class="profile-card profile-tab-content active" id="tab-orders">
+          <div class="profile-card-header">
+            <h3><i class="fa-solid fa-box" style="color:var(--primary);"></i> My Orders</h3>
+            <select style="padding:6px 12px;border:2px solid var(--border);border-radius:var(--radius-sm);font-size:.82rem;color:var(--text-medium);">
+              <option>All Orders</option>
+              <option>Delivered</option>
+              <option>Processing</option>
+              <option>Cancelled</option>
+            </select>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="orders-table">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Date</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>#FM-10045</strong></td>
+                  <td>Nov 20, 2024</td>
+                  <td>5 items</td>
+                  <td><strong>$47.85</strong></td>
+                  <td><span class="order-status status-delivered"><i class="fa-solid fa-circle-check"></i> Delivered</span></td>
+                  <td><button class="order-action-btn">View</button></td>
+                </tr>
+                <tr>
+                  <td><strong>#FM-10039</strong></td>
+                  <td>Nov 18, 2024</td>
+                  <td>3 items</td>
+                  <td><strong>$28.47</strong></td>
+                  <td><span class="order-status status-shipped"><i class="fa-solid fa-truck"></i> Shipped</span></td>
+                  <td><button class="order-action-btn">Track</button></td>
+                </tr>
+                <tr>
+                  <td><strong>#FM-10031</strong></td>
+                  <td>Nov 15, 2024</td>
+                  <td>7 items</td>
+                  <td><strong>$89.20</strong></td>
+                  <td><span class="order-status status-delivered"><i class="fa-solid fa-circle-check"></i> Delivered</span></td>
+                  <td><button class="order-action-btn">Reorder</button></td>
+                </tr>
+                <tr>
+                  <td><strong>#FM-10024</strong></td>
+                  <td>Nov 10, 2024</td>
+                  <td>2 items</td>
+                  <td><strong>$15.98</strong></td>
+                  <td><span class="order-status status-cancelled"><i class="fa-solid fa-circle-xmark"></i> Cancelled</span></td>
+                  <td><button class="order-action-btn">View</button></td>
+                </tr>
+                <tr>
+                  <td><strong>#FM-10018</strong></td>
+                  <td>Nov 05, 2024</td>
+                  <td>4 items</td>
+                  <td><strong>$54.60</strong></td>
+                  <td><span class="order-status status-delivered"><i class="fa-solid fa-circle-check"></i> Delivered</span></td>
+                  <td><button class="order-action-btn">Reorder</button></td>
+                </tr>
+                <tr>
+                  <td><strong>#FM-10012</strong></td>
+                  <td>Oct 29, 2024</td>
+                  <td>6 items</td>
+                  <td><strong>$73.15</strong></td>
+                  <td><span class="order-status status-processing"><i class="fa-solid fa-clock"></i> Processing</span></td>
+                  <td><button class="order-action-btn">View</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- WISHLIST TAB -->
+        <div class="profile-card profile-tab-content" id="tab-wishlist">
+          <div class="profile-card-header">
+            <h3><i class="fa-regular fa-heart" style="color:var(--primary);"></i> My Wishlist</h3>
+            <span style="font-size:.85rem;color:var(--text-light);" id="wishlistCount">0 items</span>
+          </div>
+          <div class="wishlist-grid" id="wishlistGrid">
+            <!-- Rendered by JS -->
+            <div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--text-light);">
+              <i class="fa-solid fa-heart-circle-plus" style="font-size:3rem;color:var(--primary-lighter);margin-bottom:12px;display:inline-block;"></i>
+              <p style="font-size:.95rem;">Your wishlist is empty.<br><a href="products.html" style="color:var(--primary);font-weight:600;">Browse products</a> to add items!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADDRESSES TAB -->
+        <div class="profile-card profile-tab-content" id="tab-addresses">
+          <div class="profile-card-header">
+            <h3><i class="fa-solid fa-location-dot" style="color:var(--primary);"></i> My Addresses</h3>
+            <button class="btn btn-primary btn-sm" onclick="showAddAddressModal()">
+              <i class="fa-solid fa-plus"></i> Add New
+            </button>
+          </div>
+          <div class="addresses-grid">
+            <div class="address-card default">
+              <span class="address-default-badge">Default</span>
+              <div class="address-name"><i class="fa-solid fa-house" style="color:var(--primary);margin-right:6px;"></i>Home</div>
+              <div class="address-line">
+                John Doe<br>
+                123 Maple Street, Apt 4B<br>
+                New York, NY 10001<br>
+                📞 (555) 123-4567
+              </div>
+              <div class="address-actions">
+                <button class="addr-btn addr-btn-edit"><i class="fa-solid fa-pen"></i> Edit</button>
+                <button class="addr-btn addr-btn-delete"><i class="fa-solid fa-trash"></i> Delete</button>
+              </div>
+            </div>
+
+            <div class="address-card">
+              <div class="address-name"><i class="fa-solid fa-briefcase" style="color:var(--primary-light);margin-right:6px;"></i>Office</div>
+              <div class="address-line">
+                John Doe<br>
+                456 Business Ave, Suite 200<br>
+                Brooklyn, NY 11201<br>
+                📞 (555) 987-6543
+              </div>
+              <div class="address-actions">
+                <button class="addr-btn addr-btn-edit"><i class="fa-solid fa-pen"></i> Edit</button>
+                <button class="addr-btn addr-btn-delete"><i class="fa-solid fa-trash"></i> Delete</button>
+              </div>
+            </div>
+
+            <div class="add-address-card" onclick="showAddAddressModal()">
+              <i class="fa-solid fa-plus"></i>
+              <span>Add New Address</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PAYMENT METHODS TAB -->
+        <div class="profile-card profile-tab-content" id="tab-payment">
+          <div class="profile-card-header">
+            <h3><i class="fa-solid fa-credit-card" style="color:var(--primary);"></i> Payment Methods</h3>
+            <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Add Card</button>
+          </div>
+          <div style="padding:20px;display:flex;flex-direction:column;gap:14px;">
+            <!-- Card 1 -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border:2px solid var(--primary);border-radius:var(--radius-md);background:var(--primary-pale);">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:48px;height:32px;background:#1a1f71;border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:.7rem;font-weight:800;letter-spacing:.5px;">VISA</div>
+                <div>
+                  <div style="font-weight:600;font-size:.9rem;color:var(--text-dark);">•••• •••• •••• 4242</div>
+                  <div style="font-size:.78rem;color:var(--text-light);">Expires 08/26</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="background:var(--primary);color:white;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:999px;">Default</span>
+                <button class="addr-btn addr-btn-delete">Remove</button>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border:2px solid var(--border);border-radius:var(--radius-md);">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:48px;height:32px;background:#eb001b;border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:.65rem;font-weight:800;">MC</div>
+                <div>
+                  <div style="font-weight:600;font-size:.9rem;color:var(--text-dark);">•••• •••• •••• 8734</div>
+                  <div style="font-size:.78rem;color:var(--text-light);">Expires 03/25</div>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <button class="addr-btn addr-btn-edit">Set Default</button>
+                <button class="addr-btn addr-btn-delete">Remove</button>
+              </div>
+            </div>
+            <!-- Add new -->
+            <div class="add-address-card" style="min-height:80px;">
+              <i class="fa-solid fa-credit-card"></i>
+              <span>Add New Payment Method</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div class="profile-card profile-tab-content" id="tab-settings">
+          <div class="profile-card-header">
+            <h3><i class="fa-solid fa-gear" style="color:var(--primary);"></i> Account Settings</h3>
+          </div>
+          <form class="settings-form" onsubmit="saveSettings(event)">
+
+            <!-- Personal Info -->
+            <div class="settings-section">
+              <div class="settings-section-title">Personal Information</div>
+              <div class="settings-grid">
+                <div class="settings-field">
+                  <label class="settings-label">First Name</label>
+                  <input type="text" class="settings-input" id="settingsFirstName" value="John" placeholder="First name">
+                </div>
+                <div class="settings-field">
+                  <label class="settings-label">Last Name</label>
+                  <input type="text" class="settings-input" id="settingsLastName" value="Doe" placeholder="Last name">
+                </div>
+                <div class="settings-field">
+                  <label class="settings-label">Email Address</label>
+                  <input type="email" class="settings-input" id="settingsEmail" value="john@example.com" placeholder="Email">
+                </div>
+                <div class="settings-field">
+                  <label class="settings-label">Phone Number</label>
+                  <input type="tel" class="settings-input" id="settingsPhone" value="+1 (555) 123-4567" placeholder="Phone">
+                </div>
+              </div>
+            </div>
+
+            <!-- Change Password -->
+            <div class="settings-section">
+              <div class="settings-section-title">Change Password</div>
+              <div class="settings-grid">
+                <div class="settings-field">
+                  <label class="settings-label">Current Password</label>
+                  <input type="password" class="settings-input" placeholder="Enter current password">
+                </div>
+                <div class="settings-field">
+                  <label class="settings-label">New Password</label>
+                  <input type="password" class="settings-input" placeholder="Enter new password">
+                </div>
+                <div class="settings-field">
+                  <label class="settings-label">Confirm New Password</label>
+                  <input type="password" class="settings-input" placeholder="Confirm new password">
+                </div>
+              </div>
+            </div>
+
+            <!-- Notifications -->
+            <div class="settings-section">
+              <div class="settings-section-title">Notifications</div>
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <label style="display:flex;align-items:center;gap:12px;cursor:pointer;">
+                  <input type="checkbox" checked style="accent-color:var(--primary);width:16px;height:16px;">
+                  <span style="font-size:.88rem;color:var(--text-dark);">Email me about order updates</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:12px;cursor:pointer;">
+                  <input type="checkbox" checked style="accent-color:var(--primary);width:16px;height:16px;">
+                  <span style="font-size:.88rem;color:var(--text-dark);">Email me about promotions and deals</span>
+                </label>
+                <label style="display:flex;align-items:center;gap:12px;cursor:pointer;">
+                  <input type="checkbox" style="accent-color:var(--primary);width:16px;height:16px;">
+                  <span style="font-size:.88rem;color:var(--text-dark);">SMS notifications for delivery updates</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="settings-save-btn">
+              <i class="fa-solid fa-floppy-disk"></i> Save Changes
+            </button>
+          </form>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-text" style="display:block;margin-bottom:14px;">Fresh<span style="color:#FF6F00">Mart</span></span>
+          <p>Your trusted online grocery store delivering fresh, quality products to your doorstep.</p>
+          <div class="footer-social">
+            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <div class="footer-links">
+            <a href="products.html?cat=Vegetables"><i class="fa-solid fa-chevron-right"></i> Vegetables</a>
+            <a href="products.html?cat=Fruits"><i class="fa-solid fa-chevron-right"></i> Fruits</a>
+            <a href="products.html?cat=Dairy"><i class="fa-solid fa-chevron-right"></i> Dairy</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <div class="footer-links">
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Help Center</a>
+            <a href="#"><i class="fa-solid fa-chevron-right"></i> Returns</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Newsletter</h4>
+          <div class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="Your email">
+            <button class="newsletter-btn" onclick="subscribeNewsletter(this)">Go</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 FreshMart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Nav (App-like) -->
+  <div class="mobile-bottom-nav">
+    <a href="index.html" class="mobile-bottom-nav-item">
+      <i class="fa-solid fa-house"></i>
+      <span>Bosh sahifa</span>
+    </a>
+    <a href="products.html" class="mobile-bottom-nav-item">
+      <i class="fa-solid fa-grid-2"></i>
+      <span>Katalog</span>
+    </a>
+    <a href="cart.html" class="mobile-bottom-nav-item">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Savat</span>
+      <span class="cart-badge" style="display:none">0</span>
+    </a>
+    <a href="profile.html" class="mobile-bottom-nav-item active">
+      <i class="fa-solid fa-user"></i>
+      <span>Profil</span>
+    </a>
+  </div>
+
+  <div class="toast-container"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // ===== PROFILE PAGE JS =====
+
+    // Tab switching
+    function switchTab(tab) {
+      document.querySelectorAll('.profile-tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.profile-nav-item').forEach(el => el.classList.remove('active'));
+
+      const tabEl = document.getElementById('tab-' + tab);
+      if (tabEl) tabEl.classList.add('active');
+
+      const navItems = document.querySelectorAll('.profile-nav-item');
+      navItems.forEach(item => {
+        if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(tab)) {
+          item.classList.add('active');
+        }
+      });
+
+      if (tab === 'wishlist') renderWishlistTab();
+      return false;
+    }
+
+    // Load user info
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = getUser();
+      if (user) {
+        const initials = `${(user.firstName || 'U')[0]}${(user.lastName || '')[0] || ''}`.toUpperCase();
+        document.getElementById('profileAvatar').textContent = initials;
+        document.getElementById('profileName').textContent = `${user.firstName} ${user.lastName}`;
+        document.getElementById('profileEmail').textContent = user.email;
+
+        // Pre-fill settings
+        const settingsFirst = document.getElementById('settingsFirstName');
+        const settingsLast  = document.getElementById('settingsLastName');
+        const settingsEmail = document.getElementById('settingsEmail');
+        const settingsPhone = document.getElementById('settingsPhone');
+        if (settingsFirst) settingsFirst.value = user.firstName || '';
+        if (settingsLast)  settingsLast.value  = user.lastName  || '';
+        if (settingsEmail) settingsEmail.value  = user.email     || '';
+        if (settingsPhone) settingsPhone.value  = user.phone     || '';
+      }
+
+      renderWishlistTab();
+    });
+
+    // Wishlist tab
+    function renderWishlistTab() {
+      const wishlist = getWishlist();
+      const container = document.getElementById('wishlistGrid');
+      const countEl   = document.getElementById('wishlistCount');
+      if (!container) return;
+
+      if (countEl) countEl.textContent = `${wishlist.length} item${wishlist.length !== 1 ? 's' : ''}`;
+
+      if (wishlist.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--text-light);">
+            <i class="fa-solid fa-heart-circle-plus" style="font-size:3rem;color:var(--primary-lighter);margin-bottom:12px;display:inline-block;"></i>
+            <p style="font-size:.95rem;">Your wishlist is empty.<br><a href="products.html" style="color:var(--primary);font-weight:600;">Browse products</a> to add items!</p>
+          </div>`;
+        return;
+      }
+
+      const wishlisted = PRODUCTS.filter(p => wishlist.includes(p.id));
+      container.innerHTML = wishlisted.map(p => buildProductCard(p)).join('');
+    }
+
+    // Settings save
+    function saveSettings(e) {
+      e.preventDefault();
+      const user = getUser() || {};
+      user.firstName = document.getElementById('settingsFirstName').value.trim();
+      user.lastName  = document.getElementById('settingsLastName').value.trim();
+      user.email     = document.getElementById('settingsEmail').value.trim();
+      user.phone     = document.getElementById('settingsPhone').value.trim();
+
+      localStorage.setItem('freshmart_user', JSON.stringify(user));
+
+      document.getElementById('profileName').textContent = `${user.firstName} ${user.lastName}`;
+      document.getElementById('profileEmail').textContent = user.email;
+      const initials = `${(user.firstName || 'U')[0]}${(user.lastName || '')[0] || ''}`.toUpperCase();
+      document.getElementById('profileAvatar').textContent = initials;
+
+      showToast('Settings Saved', 'Your account details have been updated.', 'success');
+    }
+
+    // Logout
+    function handleLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('freshmart_user');
+        showToast('Logged Out', 'You have been successfully logged out.', 'info');
+        setTimeout(() => window.location.href = 'index.html', 1000);
+      }
+    }
+
+    // Add address modal (simple alert for demo)
+    function showAddAddressModal() {
+      showToast('Coming Soon', 'Address management form coming soon!', 'info');
+    }
+  </script>
+</body>
+</html>
